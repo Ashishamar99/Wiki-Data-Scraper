@@ -1,37 +1,37 @@
 import pandas as pd
 import requests
+import logging
+import sys
+import os
 
 
-# url_london = "https://en.wikipedia.org/wiki/List_of_areas_of_London"
+# test_url = "https://en.wikipedia.org/wiki/List_of_areas_of_London"
+# invalid_url="https://duckduckgo.com/?q=using+pandas+to+generate+csv+with+multiple+sheets&ia=web"
 
 # Accept wiki pedia page URL. 
 url = input('Enter Wiki URL: ')
 wiki_url = requests.get(url)
 
-# Using pandas to read any tables on the page, and storing them in wiki_data.
-# read_html returns a list of dataframes.
-wiki_data = pd.read_html(wiki_url.text)
-print(len(wiki_data))
-
-dic = {}
-lengths = []
-for i in range(len(wiki_data)):
-    lengths.append(len(wiki_data[i]))
-table_pos = lengths.index(max(lengths))
-
-for i in range(len(wiki_data)): 
-    if i==table_pos:
-        dic['Scraped Data'] = wiki_data[i]
-
-# print(dic)
-# df = pd.DataFrame.from_dict(dic, index=[0])
-# df.to_csv('demo.csv')
-
-df = wiki_data[table_pos]
-df.to_csv('demo.csv')
-# print(type(wiki_data[table_pos]), len(wiki_data[table_pos]))
-# print('-----------------')
-# df = pd.DataFrame.from_dict(dic)
-print(type(df), df.shape)
-print('-----------------')
-print(df)
+try:
+    # Using pandas to read any tables on the page, and storing them in wiki_data.
+    # read_html returns a list of dataframes.
+    wiki_data = pd.read_html(wiki_url.text)
+    n = len(wiki_data)
+    print(n)
+    
+    if n==0:
+        print('Looks like there\'s no info to scrape, please try another page.')
+        sys.exit(2) #No error, but page has no info which we can scrape.
+    
+    # Forming the csv files.
+    for i in range(n):
+        dataframe_name = f'Scraped Data {i+1}.csv'
+        dataframe = wiki_data[i]
+        dataframe.to_csv(dataframe_name)
+    
+    # move_csv() -> function to move the csvs to a particular folder, and combine them into one file.
+    
+except Exception as e:
+    print("Oops! Looks like there's an error.")
+    logging.error(f'{e.args} | {e.with_traceback}')
+    sys.exit(1)
