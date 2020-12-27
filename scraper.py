@@ -8,8 +8,8 @@ import os
 # test_url = "https://en.wikipedia.org/wiki/List_of_areas_of_London"
 # invalid_url="https://duckduckgo.com/?q=using+pandas+to+generate+csv+with+multiple+sheets&ia=web"
 
-# Accept wiki pedia page URL. 
-url = input('Enter Wiki URL: ')
+# Accept wiki pedia page URL as an argument. 
+url = sys.argv[1]
 wiki_url = requests.get(url)
 
 try:
