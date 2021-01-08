@@ -4,4 +4,4 @@ if 'queries.txt' in os.listdir():
     pass
     
 else:
-    os.system('"echo db records >> queries.txt"')
+    os.system('"echo new db records >> queries.txt"')
