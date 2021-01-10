@@ -25,8 +25,10 @@ def write_to_db(urlparam, statusparam):
     my_cursor = db_connection.cursor()
     query_count = []
     try:
+
         for count,row in enumerate(my_cursor.execute("SELECT * FROM info")):
             query_count.append(count)
+
         if max(query_count) == 2:
             for count,row in enumerate(my_cursor.execute("SELECT * FROM info")):
                 if count==0:

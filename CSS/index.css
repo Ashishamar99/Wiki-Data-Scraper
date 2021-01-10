@@ -1,0 +1,65 @@
+.jumbotron{
+    height: 25px;
+    background-color: rgba(0, 133, 255,0.9);
+    color: white;
+    text-decoration-color: black;
+    
+}
+
+#logoimg{
+    height: 100px;
+    width: auto;
+}
+
+#click1{
+    text-decoration: none;
+    border-radius: 45px:
+}
+
+#inp1{
+    border: solid 2px;
+    height: 45px;
+    width: 420px;
+    border-color: rgb(0, 133, 255);
+    border-radius: 50px;
+}
+
+#inp1:hover{
+    border: solid 2px;
+    height: 45px;
+    width: 420px;
+    border-color: rgb(0, 133, 255);
+    border-radius: 50px;
+}
+
+#click1{
+    border: solid 2px;
+    height: 45px;
+    width: 100px;
+    border-color:rgb(0, 133, 255);
+    border-radius: 50px;
+}
+
+#click1:hover{
+    border: solid 2px;
+    height: 45px;
+    width: 100px;
+    background-color: rgba(0, 133, 255,0.9);
+    color: white;
+    border-color: black;
+    border-radius: 50px;
+}
+
+p{
+    color: black;
+    font-weight: bold;
+    font-size: 25px;
+    font-family: cursive;
+    font-weight: 400;
+}
+
+#foot1{
+    background-color: azure;
+    height: 50px;
+    width: auto;
+}

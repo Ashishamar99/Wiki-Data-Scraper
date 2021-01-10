@@ -13,6 +13,8 @@ else:
     my_cursor = db_connection.cursor()
     my_cursor.execute("CREATE TABLE info (url text, status text)")
     db_connection.commit()
+    my_cursor.execute('INSERT INTO info VALUES ("urlparam","statusparam")')
+    db_connection.commit()
     db_connection.close()
 
 db_connection = sqlite3.connect('queries.db')
