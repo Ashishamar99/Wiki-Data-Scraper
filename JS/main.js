@@ -16,3 +16,8 @@ $(document).ready(function(){
         setTimeout(fetch_db_records, 3000);
 });
 
+function sendurltoscrape()
+{
+    alert("scrape button clicked.");
+    window.location.replace("wait.html");
+}

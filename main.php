@@ -17,11 +17,9 @@ if ($_GET['run']) {
 
 <body>
     <div>Check console for fetching database records.</div>
-    <form>
-      <div>Enter URL to scrape</div>
-      <input type="text" id="urlinput" /> <br /> <br />
-      <input type="submit" id="submitbutton" value="Scrape" onclick="sendurltoscrape()"/>
-    </form>
+    <div>Enter URL to scrape</div>
+    <input type="text" id="urlinput" /> <br /> <br />
+    <a href="wait.html"> <button id="submitbutton" onclick="sendurltoscrape()"/>Scrape</button> </a>
     <!-- JS Libs -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="JS/main.js"></script>
