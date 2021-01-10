@@ -4,6 +4,7 @@ import logging
 import sys
 import os
 from zipfile import ZipFile
+import sqlite3
 
 def status_write(message):
     status_file = open('status.log', 'w+')
@@ -19,8 +20,29 @@ def zip_all_csvs():
                 with ZipFile('Scraped_Data.zip', 'a') as zip_file:
                     zip_file.write(myfile)
 
-def write_to_db(url, status):
-    pass
+def write_to_db(urlparam, statusparam):
+    db_connection = sqlite3.connect('queries.db')
+    my_cursor = db_connection.cursor()
+    query_count = []
+    try:
+        for count,row in enumerate(my_cursor.execute("SELECT * FROM info")):
+            query_count.append(count)
+        if max(query_count) == 2:
+            for count,row in enumerate(my_cursor.execute("SELECT * FROM info")):
+                if count==0:
+                    delete_stmt = f'DELETE FROM info where url="{row[0]}"'
+                    my_cursor.execute(delete_stmt)
+                    db_connection.commit()
+        
+        insert_stmt = f'INSERT INTO info VALUES ("{urlparam}","{statusparam}")'
+        my_cursor.execute(insert_stmt)
+        db_connection.commit()
+
+    except Exception as e:
+        print(e)
+
+    finally:
+        db_connection.close()
 # test_url = "https://en.wikipedia.org/wiki/List_of_areas_of_London"
 # invalid_url="https://duckduckgo.com/?q=using+pandas+to+generate+csv+with+multiple+sheets&ia=web"
 
