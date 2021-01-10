@@ -43,6 +43,12 @@ def write_to_db(urlparam, statusparam):
 
     finally:
         db_connection.close()
+
+def clean_folder():
+    for filename in os.listdir():
+        if filename.endswith('csv') or filename.endswith('zip'):
+            os.remove(filename)
+
 # test_url = "https://en.wikipedia.org/wiki/List_of_areas_of_London"
 # invalid_url="https://duckduckgo.com/?q=using+pandas+to+generate+csv+with+multiple+sheets&ia=web"
 
@@ -59,6 +65,8 @@ print(url)
 my_file.close()
 
 try:
+    clean_folder() # Deletes all previous data, such as zip file and csvs.
+    
     # Using pandas to read any tables on the page, and storing them in wiki_data.
     # read_html returns a list of dataframes.
     wiki_url = requests.get(url)
