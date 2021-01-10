@@ -1,7 +1,7 @@
 function fetch_db_records()
 {
     let xhr=new XMLHttpRequest();
-    xhr.open('GET','resultset.txt',true);
+    xhr.open('GET','resultset.json',true);
     xhr.send();
     xhr.onload=function(){
 
@@ -18,6 +18,7 @@ $(document).ready(function(){
 
 function sendurltoscrape()
 {
-    alert("scrape button clicked.");
-    window.location.replace("wait.html");
+    data = document.getElementById("urlinput").value;
+    console.log(data);
+    // window.location.replace("wait.html");
 }

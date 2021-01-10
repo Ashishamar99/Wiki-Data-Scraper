@@ -2,8 +2,8 @@ import os
 import sqlite3
 import json
 
-if 'resultset.txt' in os.listdir():
-    os.remove('resultset.txt')
+if 'resultset.json' in os.listdir():
+    os.remove('resultset.json')
 
 # Creating db file if it doesn't exist.
 if 'queries.db' in os.listdir():
@@ -26,7 +26,7 @@ try:
         url_id += 1
     print(result_dict)
     
-    result_file = open('resultset.txt', 'w+')
+    result_file = open('resultset.json', 'w+')
     result_json = json.dumps(result_dict)
     result_file.write(result_json)
     
