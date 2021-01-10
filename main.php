@@ -14,14 +14,14 @@ if ($_GET['run']) {
     <link rel="icon" href="Images/window scraper.jpg" >
     <title>Wiki Data Scraper</title>
 </head>
-<style>
-  #fetch-db-btn{
-    color: red;
-  }
-</style>
+
 <body>
-    <button id="fetch-db-btn" href="?run=true">Fetch DB Records.</button>
-    <!-- This link will add ?run=true to your URL, myfilename.php?run=true -->
+    <div>Check console for fetching database records.</div>
+    <form>
+      <div>Enter URL to scrape</div>
+      <input type="text" id="urlinput" /> <br /> <br />
+      <input type="submit" id="submitbutton" value="Scrape" onclick="sendurltoscrape()"/>
+    </form>
     <!-- JS Libs -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="JS/main.js"></script>

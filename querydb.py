@@ -1,5 +1,6 @@
 import os
 import sqlite3
+import json
 
 if 'resultset.txt' in os.listdir():
     os.remove('resultset.txt')
@@ -17,6 +18,23 @@ else:
 db_connection = sqlite3.connect('queries.db')
 my_cursor = db_connection.cursor()
 # Since our database exists, let's fetch the records and dump them into a file called resultset.txt.
-for row in my_cursor.execute("SELECT * FROM info"):
-    print(row)
+try:
+    result_dict = {"id":("url", "status")}
+    url_id = 1
+    for row in my_cursor.execute("SELECT * FROM info"):
+        result_dict[url_id] = row
+        url_id += 1
+    print(result_dict)
+    
+    result_file = open('resultset.txt', 'w+')
+    result_json = json.dumps(result_dict)
+    result_file.write(result_json)
+    
+except Exception as e:
+    print('Error Occured.')
+    print(e)
+
+finally:
+    result_file.close()
+    db_connection.close()
 #os.system('"echo newer db records >> resultset.txt"')
