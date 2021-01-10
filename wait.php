@@ -6,10 +6,15 @@
     }
     else
     {
-        $myfile = fopen("urlinput.txt", "w") or die("Unable to open file!");;
-        fwrite($myfile, $url);
-        fclose($myfile);
+        if ($_GET['run']) {
+            # This code will run if ?run=true is set.
+            $myfile = fopen("urlinput.log", "w") or die("Unable to open file!");;
+            fwrite($myfile, $url);
+            fclose($myfile);
 
+            exec("scraperrun.sh", $o, $v);
+            echo "$v";
+          }
         echo "Scraping... <br /> <br />";
     }
     ?>

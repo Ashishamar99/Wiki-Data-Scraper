@@ -17,7 +17,7 @@ if ($_GET['run']) {
 
 <body>
     <div>Check console for fetching database records.</div>
-    <form method="POST" action="wait.php">
+    <form method="POST" action="wait.php?run=true">
       Enter URL to scrape: <br /> <br />
       <input type="text" name="urlinput" /> <br /> <br />
       <input type="submit" value="Scrape" />

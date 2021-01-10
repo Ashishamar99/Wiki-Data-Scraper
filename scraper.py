@@ -3,24 +3,51 @@ import requests
 import logging
 import sys
 import os
+from zipfile import ZipFile
 
+def status_write(message):
+    status_file = open('status.log', 'w+')
+    status_file.write(message)
+    status_file.close()
+    
+def zip_all_csvs():
+    mypath = os.getcwd()
+    print(mypath)
+    for (dirpath, dirnames, filenames) in os.walk(mypath):
+        for myfile in filenames:
+            if myfile.endswith('csv'):
+                with ZipFile('Scraped_Data.zip', 'a') as zip_file:
+                    zip_file.write(myfile)
 
+def write_to_db(url, status):
+    pass
 # test_url = "https://en.wikipedia.org/wiki/List_of_areas_of_London"
 # invalid_url="https://duckduckgo.com/?q=using+pandas+to+generate+csv+with+multiple+sheets&ia=web"
 
-# Accept wiki pedia page URL as an argument. 
-url = sys.argv[1]
-wiki_url = requests.get(url)
+# Read page URL from file, if it exists. 
+if 'urlinput.log' in os.listdir():
+    my_file = open('urlinput.log', 'r')
+
+else:
+    print('URL Input File Not Found')
+    sys.exit(0)
+
+url = my_file.read()
+print(url)
+my_file.close()
 
 try:
     # Using pandas to read any tables on the page, and storing them in wiki_data.
     # read_html returns a list of dataframes.
+    wiki_url = requests.get(url)
     wiki_data = pd.read_html(wiki_url.text)
     n = len(wiki_data)
     print(n)
     
     if n==0:
         print('Looks like there\'s no info to scrape, please try another page.')
+        write_to_db(url, 'Error')
+        status_write('Error')
         sys.exit(2) #No error, but page has no info which we can scrape.
     
     # Forming the csv files.
@@ -29,9 +56,13 @@ try:
         dataframe = wiki_data[i]
         dataframe.to_csv(dataframe_name)
     
-    # move_csv() -> function to move the csvs to a particular folder, and combine them into one file.
+    zip_all_csvs() # Function to move the csvs to a particular folder, and combine them into one file.
+    write_to_db(url, 'Success')
+    status_write('Success')
     
 except Exception as e:
-    print("Oops! Looks like there's an error.")
+    print("Oops! Looks like there's an error.\n")
     logging.error(f'{e.args} | {e.with_traceback}')
+    write_to_db(url, 'Error')
+    status_write('Error')
     sys.exit(1)
