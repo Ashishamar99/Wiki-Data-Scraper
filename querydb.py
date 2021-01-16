@@ -13,7 +13,9 @@ else:
     my_cursor = db_connection.cursor()
     my_cursor.execute("CREATE TABLE info (url text, status text)")
     db_connection.commit()
-    my_cursor.execute('INSERT INTO info VALUES ("urlparam","statusparam")')
+    my_cursor.execute('INSERT INTO info VALUES ("urlparam1","statusparam1")')
+    my_cursor.execute('INSERT INTO info VALUES ("urlparam2","statusparam2")')
+    my_cursor.execute('INSERT INTO info VALUES ("urlparam3","statusparam3")')
     db_connection.commit()
     db_connection.close()
 
