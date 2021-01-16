@@ -35,7 +35,7 @@ if ($_GET['run']) {
                     <br>
                     <form method="POST" action="wait.php?run=true">
                         <input id="inp1" type="text" placeholder="    Enter the URL " name="urlinput"/>
-                    <input id="click1" type="submit" value="Scrape" /><<br><br><br><br><br>
+                    <input id="click1" type="submit" value="Scrape" /> <br><br><br><br><br>
                     </form>
                     <div id="foot1">
                         <center>
