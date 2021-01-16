@@ -26,19 +26,22 @@
                             $status = $_GET['msg'];
                             if ($status == "Success")
                             {
-                                echo '<a href="Scraped_Data.zip" download>Download this</a> <br /> <br />';
-                                echo '<a href=index.html>Scrape Another URL !</a>';
+                                echo '<a href="Scraped_Data.zip" style="font-size: 20px;" download>Click To Download Scraped Data &#128515;</a> <br /> <br />';
+                                echo '<a href=index.html style="font-size: 20px;">Scrape Another URL !</a>';
                             }
 
                             elseif ($status == "Error")
                             {
-                                echo '<a href=index.html>Scrape Another URL !</a>';
+                                // Text Decoration.
+                                // echo '<div class="badge badge-primary text-wrap" style="width: 10rem; font-size: 20px;">Sorry, Looks Like An Error Occurred &#128533;</div>';
+                                echo '<div style="font-size: 20px;"> Sorry, Looks Like An Error Occurred &#128533;</div> <br /> <br />';
+                                echo '<a href=index.html style="font-size: 20px;">Try Scraping Another URL !</a>';
                             }
                         }
                         else
                         {
-                            echo "Default Parameter";
-                            echo '<a href=index.html>Try Another URL !</a>';
+                            echo '<div style="font-size: 20px;"> Default Parameter </div> <br /> <br />';
+                            echo '<a href=index.html style="font-size: 20px;">Try Another URL !</a>';
                         }
                     ?>
                     </center>
