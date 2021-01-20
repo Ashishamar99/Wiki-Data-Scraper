@@ -1,1 +1,1 @@
-## This Folder contains files regarding this project.
+## This folder contains files regarding this project.
