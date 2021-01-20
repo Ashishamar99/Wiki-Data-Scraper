@@ -8,7 +8,10 @@ function fetch_db_records()
         if(xhr.status===200){
         let data=xhr.responseText;
         displayJSONData(data);
-            };
+            }
+        else if(xhr.status===404){
+            document.querySelector('#json-card').innerHTML="Please Execute A Few Queries";
+        };
 };
 }
 
